@@ -1,0 +1,73 @@
+# WaBridge + OpenWA engine.  Start:  docker compose up -d --build
+# Dashboard: http://localhost:8080   (engine API stays on 127.0.0.1:2785 for debugging only)
+#
+# Secrets come from .env (run windows\setup.ps1 once, or copy .env.example → .env and fill it in).
+
+name: wabridge
+
+services:
+  openwa:
+    image: rmyndharis/openwa:${OPENWA_VERSION:-0.25.0}
+    container_name: wabridge-engine
+    restart: unless-stopped
+    stop_grace_period: 75s
+    mem_limit: ${OPENWA_MEM_LIMIT:-2g}
+    security_opt:
+      - 'no-new-privileges:true'
+    tmpfs:
+      - /tmp
+    ports:
+      - '127.0.0.1:2785:2785'
+    environment:
+      NODE_ENV: production
+      PORT: 2785
+      TZ: ${TZ:-Asia/Kolkata}
+      HOME: /tmp
+      XDG_CONFIG_HOME: /tmp/.config
+      XDG_CACHE_HOME: /tmp/.cache
+      API_MASTER_KEY: ${OPENWA_API_KEY:?OPENWA_API_KEY is missing - run windows\setup.ps1 or fill in .env}
+      API_KEY_PEPPER: ${OPENWA_API_KEY_PEPPER:-}
+      ENGINE_TYPE: ${OPENWA_ENGINE:-whatsapp-web.js}
+      AUTO_START_SESSIONS: 'true'
+      # WaBridge receives the engine's events over the internal Docker network.
+      SSRF_ALLOWED_HOSTS: wabridge
+      CORS_ORIGINS: http://localhost:2785
+      ENABLE_SWAGGER: 'true'
+      SIMULATE_TYPING: 'true'
+      SEND_PACING_ENABLED: ${OPENWA_SEND_PACING:-true}
+      WWEBJS_AUTH_TIMEOUT_MS: '120000'
+      LOG_LEVEL: ${OPENWA_LOG_LEVEL:-info}
+    volumes:
+      - openwa-data:/app/data
+
+  wabridge:
+    build: .
+    image: wabridge:latest
+    container_name: wabridge
+    restart: unless-stopped
+    depends_on:
+      - openwa
+    ports:
+      - '${WABRIDGE_BIND:-127.0.0.1}:${WABRIDGE_PORT:-8080}:8080'
+    environment:
+      PORT: 8080
+      TZ: ${TZ:-Asia/Kolkata}
+      OPENWA_URL: http://openwa:2785
+      OPENWA_API_KEY: ${OPENWA_API_KEY}
+      WABRIDGE_PUBLIC_URL: ${WABRIDGE_PUBLIC_URL:-http://wabridge:8080}
+      WABRIDGE_SECRET: ${WABRIDGE_SECRET:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      META_PHONE_NUMBER_ID: ${META_PHONE_NUMBER_ID:-}
+      META_WABA_ID: ${META_WABA_ID:-}
+      META_ACCESS_TOKEN: ${META_ACCESS_TOKEN:-}
+      META_APP_SECRET: ${META_APP_SECRET:-}
+      META_VERIFY_TOKEN: ${META_VERIFY_TOKEN:-}
+      META_GRAPH_VERSION: ${META_GRAPH_VERSION:-v23.0}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      LEAD_FORM_ORIGINS: ${LEAD_FORM_ORIGINS:-}
+    volumes:
+      - wabridge-data:/app/data
+
+volumes:
+  openwa-data:
+  wabridge-data:

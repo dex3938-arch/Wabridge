@@ -1,0 +1,207 @@
+<!--meta {
+  "title": "How WaBridge Works — Set Up WhatsApp Automation on Windows",
+  "crumb": "How it works",
+  "description": "Install WaBridge on Windows with Docker Desktop, link your WhatsApp number by QR and send your first automated reply. Requirements, steps, security and the optional Meta Cloud API.",
+  "preload": "wabridge-dashboard-on-laptop",
+  "preloadSizes": "(min-width: 920px) 560px, 100vw",
+  "howto": {
+    "name": "Install WaBridge on Windows and link a WhatsApp number",
+    "totalTime": "PT15M",
+    "steps": [
+      ["Install Docker Desktop", "Install Docker Desktop for Windows with the WSL 2 backend and start it."],
+      ["Unzip WaBridge", "Extract the WaBridge zip to a folder such as C:\\WaBridge."],
+      ["Start WaBridge", "Double-click Start WaBridge.bat. It creates secure keys, downloads the engine and opens http://localhost:8080."],
+      ["Create the admin account", "Enter your business name, your name, e-mail and a password on the first screen."],
+      ["Link your WhatsApp number", "Go to WhatsApp numbers, click Add number and scan the QR code from WhatsApp → Linked devices on your phone."],
+      ["Add your first automation", "Open Automations & AI, add the starter rules and send the number a test message."]
+    ]
+  }
+}-->
+<section class="page-hero">
+  <div class="container split">
+    <div>
+      <ol class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page">How it works</li></ol>
+      <span class="eyebrow"><span class="dot"></span>Setup guide</span>
+      <h1>How WaBridge works — and how to <span class="grad">set it up on Windows</span></h1>
+      <p class="lead">Two small programs run side by side on your computer: the WaBridge workspace you see, and an open-source WhatsApp engine that keeps your linked numbers online. Setting both up takes about fifteen minutes.</p>
+      <div class="actions"><a class="btn btn-primary" href="#install">Jump to installation <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-glass" href="#requirements">Check requirements</a></div>
+    </div>
+    <div class="hero-photo">
+      <!--img slug="wabridge-dashboard-on-laptop" alt="Laptop on a desk showing the WaBridge dashboard next to a smartphone" sizes="(min-width: 920px) 560px, 100vw" eager-->
+    </div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="dot"></span>Architecture</span>
+      <h2>What happens when a customer messages you</h2>
+      <p class="lead">Messages travel from WhatsApp to the engine, which passes them to WaBridge with a signature so nothing can be faked on the way.</p>
+    </div>
+    <figure class="glass diagram mt-2 reveal">
+      <svg viewBox="0 0 1000 300" role="img" aria-labelledby="diag-title diag-desc">
+        <title id="diag-title">WaBridge architecture</title>
+        <desc id="diag-desc">Your team uses the WaBridge dashboard in a browser. WaBridge talks to the OpenWA engine, which keeps the WhatsApp number linked. An optional connection goes to the Meta Cloud API.</desc>
+        <defs>
+          <linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d1fae5"/></linearGradient>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#059669"/></marker>
+        </defs>
+        <g font-family="inherit" text-anchor="middle">
+          <rect x="20" y="95" width="180" height="110" rx="20" fill="url(#dg)" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="110" y="142" font-size="20" font-weight="800" fill="#0b2a20">Your team</text>
+          <text x="110" y="170" font-size="14" fill="#557466">browser · phone · laptop</text>
+          <rect x="280" y="80" width="200" height="140" rx="22" fill="#059669"/>
+          <text x="380" y="138" font-size="22" font-weight="800" fill="#fff">WaBridge</text>
+          <text x="380" y="164" font-size="14" fill="#d1fae5">inbox · CRM · campaigns</text>
+          <text x="380" y="184" font-size="14" fill="#d1fae5">automations · AI · API</text>
+          <rect x="560" y="95" width="190" height="110" rx="20" fill="url(#dg)" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="655" y="142" font-size="20" font-weight="800" fill="#0b2a20">OpenWA engine</text>
+          <text x="655" y="170" font-size="14" fill="#557466">keeps numbers linked</text>
+          <rect x="830" y="95" width="150" height="110" rx="20" fill="url(#dg)" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="905" y="142" font-size="20" font-weight="800" fill="#0b2a20">WhatsApp</text>
+          <text x="905" y="170" font-size="14" fill="#557466">your number</text>
+          <rect x="560" y="236" width="190" height="52" rx="16" fill="#fff" stroke="#a7f3d0" stroke-dasharray="6 6" stroke-width="2"/>
+          <text x="655" y="268" font-size="15" font-weight="700" fill="#046c4e">Meta Cloud API (optional)</text>
+        </g>
+        <g stroke="#059669" stroke-width="3" fill="none">
+          <path d="M205 150h68" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <path d="M485 150h68" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <path d="M755 150h68" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <path d="M480 205 C520 250 520 262 553 262" marker-end="url(#ar)" stroke-dasharray="6 6"/>
+        </g>
+        <g font-size="13" fill="#046c4e" text-anchor="middle" font-weight="700">
+          <text x="240" y="138">HTTPS</text>
+          <text x="520" y="138">signed events</text>
+          <text x="790" y="138">linked device</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="requirements">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Before you start</span>
+      <h2>What you need</h2>
+      <p class="lead">A normal office laptop is enough for one or two numbers. Keep it plugged in and set to not sleep while WaBridge is running.</p>
+    </div>
+    <div class="glass card req reveal">
+      <div><span class="icon"><svg aria-hidden="true"><use href="#i-windows"/></svg></span><p><b>Windows 10 or 11 (64-bit)</b>macOS and Linux work too.</p></div>
+      <div><span class="icon"><svg aria-hidden="true"><use href="#i-server"/></svg></span><p><b>Docker Desktop with WSL 2</b>Free for individuals and small businesses — check Docker's licence terms for larger companies.</p></div>
+      <div><span class="icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></span><p><b>8 GB RAM recommended</b>Each linked number uses roughly 300–500 MB.</p></div>
+      <div><span class="icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><p><b>A dedicated WhatsApp number</b>On a phone with WhatsApp or WhatsApp Business. Avoid your main personal number.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="install">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="dot"></span>Installation</span>
+      <h2>Install WaBridge in six steps</h2>
+    </div>
+    <ol class="steps mt-2 list-reset">
+      <li class="step reveal"><div class="glass card"><h3>Install Docker Desktop</h3><p>Download it from docker.com, keep the default WSL 2 option, restart if asked, and wait until it shows “Engine running”.</p></div></li>
+      <li class="step reveal"><div class="glass card"><h3>Unzip WaBridge</h3><p>Extract the zip somewhere simple, such as <span class="kbd">C:\WaBridge</span>. Avoid OneDrive-synced folders.</p></div></li>
+      <li class="step reveal"><div class="glass card"><h3>Double-click Start WaBridge.bat</h3><p>It creates fresh secret keys, downloads the engine (about 1 GB, first time only) and opens your browser.</p></div></li>
+      <li class="step reveal"><div class="glass card"><h3>Create your admin login</h3><p>Enter your business name, your name, e-mail and a strong password. Teammates can be added later.</p></div></li>
+      <li class="step reveal"><div class="glass card"><h3>Link your number</h3><p>WhatsApp numbers → Add number. On the phone: Linked devices → Link a device, then scan the QR.</p></div></li>
+      <li class="step reveal"><div class="glass card"><h3>Turn on auto-replies</h3><p>Automations &amp; AI → Add starter rules. Message the number “price” from another phone and watch the reply arrive.</p></div></li>
+    </ol>
+    <div class="grid grid-2 mt-2">
+      <div class="glass card reveal">
+        <h3>Prefer the command line?</h3>
+        <p class="muted">From the WaBridge folder in PowerShell:</p>
+<pre class="code"><code>powershell -ExecutionPolicy Bypass -File windows\setup.ps1
+powershell -ExecutionPolicy Bypass -File windows\manage.ps1 logs
+powershell -ExecutionPolicy Bypass -File windows\manage.ps1 backup</code></pre>
+      </div>
+      <div class="glass card reveal">
+        <h3>Check that everything works</h3>
+        <ul class="checks">
+          <li><span>The top bar shows <b>Engine online</b> and <b>Live</b></span></li>
+          <li><span>Your number's card turns <b>Connected</b></span></li>
+          <li><span>A message sent to the number appears in the Inbox instantly</span></li>
+          <li><span><span class="kbd">manage.ps1 test</span> runs 22 automatic checks</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="security">
+  <div class="container split reverse">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Data &amp; security</span>
+      <h2>Where your data lives</h2>
+      <p class="lead">Chats, contacts, media and logs are stored in two Docker volumes on your own computer. Nothing is sent to a WaBridge server — there isn't one.</p>
+      <ul class="checks">
+        <li><span>The dashboard is reachable only from your computer unless you change it</span></li>
+        <li><span>Passwords are scrypt-hashed; sessions use HTTP-only cookies</span></li>
+        <li><span>Every event between the engine and WaBridge carries an HMAC signature</span></li>
+        <li><span>One-command backups to a folder you choose</span></li>
+      </ul>
+      <p class="note">Treat backups like passwords: they contain your WhatsApp login.</p>
+    </div>
+    <div class="glass card reveal">
+      <h3>Going online safely</h3>
+      <p>Need to open WaBridge from outside the office, or receive Meta webhooks? Put it behind HTTPS with a tunnel instead of opening ports on your router:</p>
+<pre class="code"><code>winget install Cloudflare.cloudflared
+cloudflared tunnel --url http://localhost:8080</code></pre>
+      <p class="note mb-0">For a permanent address, use a named tunnel with an access policy, and set <span class="kbd">COOKIE_SECURE=true</span>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="official">
+  <div class="container narrow">
+    <div class="glass card reveal">
+      <span class="eyebrow"><span class="dot"></span>Optional</span>
+      <h2 class="mt-0">Connecting the official Meta Cloud API</h2>
+      <p>The QR-linked channel needs no Meta setup. If you also want approved-template marketing at scale, you will need these from your Meta Business account:</p>
+      <ul class="checks">
+        <li><span><b>Phone Number ID</b> and <b>WhatsApp Business Account (WABA) ID</b> from WhatsApp Manager → API setup</span></li>
+        <li><span>A <b>permanent access token</b> from a System User with WhatsApp permissions</span></li>
+        <li><span>Your app's <b>App secret</b> (to verify webhooks) and the verify token WaBridge generates</span></li>
+        <li><span>A public HTTPS address for the webhook, e.g. through a tunnel</span></li>
+      </ul>
+      <p class="note mb-0">A Business ID alone is not enough — the number must also be registered on the Cloud API.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="center reveal"><h2>Setup questions</h2></div>
+    <div class="faq mt-2">
+      <details class="glass faq-item reveal">
+        <summary>The QR code never appears. What should I check?</summary>
+        <div class="answer"><p>The first start can take a couple of minutes. Make sure Docker Desktop has at least 2 GB of memory, then press Restart on the number's card.</p></div>
+      </details>
+      <details class="glass faq-item reveal">
+        <summary>My phone asks me to create a passkey and linking never finishes.</summary>
+        <div class="answer"><p>That is a restriction WhatsApp applies to some accounts, and no linked-device tool can complete it today. Try a different number, and avoid reserving a WhatsApp username on the number you automate.</p></div>
+      </details>
+      <details class="glass faq-item reveal">
+        <summary>What happens if my laptop sleeps or restarts?</summary>
+        <div class="answer"><p>Messages wait on WhatsApp's side while the laptop is off. When Docker starts again, numbers reconnect automatically and new messages flow into the inbox.</p></div>
+      </details>
+      <details class="glass faq-item reveal">
+        <summary>How do I move WaBridge to a server later?</summary>
+        <div class="answer"><p>Run the backup command, copy the backup files and the WaBridge folder to the server, and start it with the same docker compose command. Linux servers with 2 GB of RAM or more work well.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-band center reveal">
+      <h2>Stuck somewhere during setup?</h2>
+      <p class="lead">Tell us what you see on screen and we will help you get your first number linked.</p>
+      <div class="actions"><a class="btn btn-glass" href="contact.html">Ask for setup help <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+<!--meta {
+  "title": "Contact WaBridge — Demo, Setup Help & Questions",
+  "crumb": "Contact",
+  "description": "Ask for a WaBridge demo, help installing it on Windows, or advice on WhatsApp automation for your business. We reply on WhatsApp or e-mail."
+}-->
+<section class="page-hero">
+  <div class="container">
+    <ol class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page">Contact</li></ol>
+    <div class="split">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Contact</span>
+        <h1>Let's get your <span class="grad">WhatsApp working for you</span></h1>
+        <p class="lead">Want a walkthrough, help linking your first number, or a second opinion on your campaign plan? Send a few details and we will get back to you.</p>
+        <ul class="contact-list">
+          {{#if whatsappLink}}<li><span class="icon"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><span><b>WhatsApp</b><br><a href="{{whatsappLink}}" target="_blank" rel="noopener noreferrer">Chat with us now</a></span></li>{{/if}}
+          {{#if email}}<li><span class="icon"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><b>E-mail</b><br><a href="mailto:{{email}}">{{email}}</a></span></li>{{/if}}
+        </ul>
+        <div class="hero-photo mt-2 contact-photo">
+          <!--img slug="customer-success-manager" alt="Friendly customer success manager wearing a headset" sizes="(min-width: 920px) 420px, 92vw" eager-->
+        </div>
+      </div>
+      <div class="glass card">
+        <h2 class="h3">Send us a message</h2>
+        <form id="contact-form" class="form" novalidate data-endpoint="{{leadEndpoint}}" data-mailto="{{email}}" {{#if email}}action="mailto:{{email}}" method="post" enctype="text/plain"{{/if}}>
+          <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="two">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" maxlength="80" required>
+              <span class="err" role="alert">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="+91 98765 43210" required>
+              <span class="err" role="alert">Enter a valid number with country code.</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">E-mail <span class="muted">(optional)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254">
+            <span class="err" role="alert">That e-mail address does not look right.</span>
+          </div>
+          <div class="field">
+            <label for="topic">What can we help with?</label>
+            <select id="topic" name="topic">
+              <option>Product demo</option>
+              <option>Installation help</option>
+              <option>Campaigns &amp; automation advice</option>
+              <option>Official Meta Cloud API</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" maxlength="2000" required placeholder="Tell us about your business and how you use WhatsApp today."></textarea>
+            <span class="err" role="alert">Please write at least a short message (10+ characters).</span>
+          </div>
+          <label class="consent"><input type="checkbox" name="consent" required> <span>I agree to be contacted on WhatsApp or e-mail about my request. See the <a href="privacy.html">privacy notice</a>.</span></label>
+          <button class="btn btn-primary" type="submit">Send message <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          {{#unless leadEndpoint}}{{#unless email}}<p class="note mb-0">Site owner: set <span class="kbd">leadEndpoint</span> or <span class="kbd">email</span> in site.config.json to receive these messages.</p>{{/unless}}{{/unless}}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="center reveal"><h2>Before you write</h2></div>
+    <div class="faq mt-2">
+      <details class="glass faq-item reveal">
+        <summary>Can you install WaBridge for us?</summary>
+        <div class="answer"><p>Choose “Installation help” in the form and describe your computer or server. We will reply with the options available for your setup.</p></div>
+      </details>
+      <details class="glass faq-item reveal">
+        <summary>Can I try it with a test number first?</summary>
+        <div class="answer"><p>That is exactly what we recommend. Link a spare number, invite a teammate and try campaigns on a few friends who agreed to help before you connect your main business number.</p></div>
+      </details>
+      <details class="glass faq-item reveal">
+        <summary>What information should I include?</summary>
+        <div class="answer"><p>Your industry, roughly how many WhatsApp chats you handle per day, how many people reply, and whether you already have a Meta Business account. Please do not send passwords or API keys.</p></div>
+      </details>
+    </div>
+  </div>
+</section>

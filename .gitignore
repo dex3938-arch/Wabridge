@@ -1,0 +1,9 @@
+node_modules/
+web/dist/
+data/
+.env
+.env.*
+!.env.example
+*.zip
+npm-debug.log*
+.DS_Store

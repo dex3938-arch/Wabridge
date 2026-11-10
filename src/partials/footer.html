@@ -1,0 +1,41 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo-96.webp" srcset="assets/img/logo-96.webp 2x, assets/img/logo-128.webp 3x" width="44" height="44" alt="" loading="lazy" decoding="async"><span>WaBridge</span></a>
+        <p class="footer-about">A self-hosted workspace for business conversations on WhatsApp — inbox, campaigns, automations and AI, on your own machine.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="how-it-works.html#install">Install on Windows</a></li>
+          <li><a href="features.html#api">Developer API</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Solutions</h2>
+        <ul>
+          <li><a href="use-cases.html#retail">Retail &amp; D2C</a></li>
+          <li><a href="use-cases.html#education">Coaching &amp; education</a></li>
+          <li><a href="use-cases.html#real-estate">Real estate</a></li>
+          <li><a href="use-cases.html#agencies">Agencies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy notice</a></li>
+          {{#if email}}<li><a href="mailto:{{email}}">{{email}}</a></li>{{/if}}
+          {{#if whatsappLink}}<li><a href="{{whatsappLink}}" rel="noopener noreferrer" target="_blank">Chat with us</a></li>{{/if}}
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">
+      <span>© {{year}} {{publisher}}. All rights reserved.</span>
+      <span>WaBridge is independent software and is not affiliated with, endorsed or sponsored by WhatsApp or Meta.</span>
+    </div>
+  </div>
+</footer>

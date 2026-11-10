@@ -1,0 +1,153 @@
+{
+ "boutique-owner-reading-whatsapp-order": {
+  "width": 1344,
+  "height": 896,
+  "widths": [
+   640,
+   960,
+   1344
+  ]
+ },
+ "support-team-shared-whatsapp-inbox": {
+  "width": 1344,
+  "height": 896,
+  "widths": [
+   640,
+   960,
+   1344
+  ]
+ },
+ "bakery-owner-packing-whatsapp-order": {
+  "width": 1024,
+  "height": 1024,
+  "widths": [
+   480,
+   768,
+   1024
+  ]
+ },
+ "property-consultant-on-phone": {
+  "width": 1024,
+  "height": 1024,
+  "widths": [
+   480,
+   768,
+   1024
+  ]
+ },
+ "tutor-replying-to-parents": {
+  "width": 1024,
+  "height": 1024,
+  "widths": [
+   480,
+   768,
+   1024
+  ]
+ },
+ "marketing-agency-client-campaigns": {
+  "width": 1024,
+  "height": 1024,
+  "widths": [
+   480,
+   768,
+   1024
+  ]
+ },
+ "wabridge-dashboard-on-laptop": {
+  "width": 1344,
+  "height": 896,
+  "widths": [
+   640,
+   960,
+   1344
+  ]
+ },
+ "customer-success-manager": {
+  "width": 896,
+  "height": 1152,
+  "widths": [
+   480,
+   720,
+   896
+  ]
+ },
+ "app-overview": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-inbox": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-campaign": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-campaign-editor": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-automations": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-contacts": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-numbers": {
+  "width": 2880,
+  "height": 1800,
+  "widths": [
+   720,
+   1200,
+   1800,
+   2400
+  ]
+ },
+ "app-inbox-mobile": {
+  "width": 1170,
+  "height": 2532,
+  "widths": [
+   400,
+   800,
+   1170
+  ]
+ }
+}

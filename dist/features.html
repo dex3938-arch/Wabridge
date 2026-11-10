@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>WaBridge Features — WhatsApp Inbox, Campaigns, Auto-Replies &amp; AI</title>
+<meta name="description" content="Team inbox, contact CRM with consent, paced bulk campaigns, keyword auto-replies, a Claude AI assistant, REST API and webhooks — all WaBridge features explained.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://wabridge.example/features.html">
+<meta name="theme-color" content="#059669">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="WaBridge">
+<meta property="og:title" content="WaBridge Features — WhatsApp Inbox, Campaigns, Auto-Replies &amp; AI">
+<meta property="og:description" content="Team inbox, contact CRM with consent, paced bulk campaigns, keyword auto-replies, a Claude AI assistant, REST API and webhooks — all WaBridge features explained.">
+<meta property="og:url" content="https://wabridge.example/features.html">
+<meta property="og:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WaBridge — self-hosted WhatsApp team inbox and automation">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WaBridge Features — WhatsApp Inbox, Campaigns, Auto-Replies &amp; AI">
+<meta name="twitter:description" content="Team inbox, contact CRM with consent, paced bulk campaigns, keyword auto-replies, a Claude AI assistant, REST API and webhooks — all WaBridge features explained.">
+<meta name="twitter:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/app-overview-720.avif 720w, assets/img/app-overview-1200.avif 1200w, assets/img/app-overview-1800.avif 1800w, assets/img/app-overview-2400.avif 2400w" imagesizes="(min-width: 1220px) 1140px, 94vw" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/main.6498ea56d8.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"WaBridge","applicationCategory":"BusinessApplication","operatingSystem":"Windows, macOS, Linux (Docker)","description":"Team inbox, contact CRM with consent, paced bulk campaigns, keyword auto-replies, a Claude AI assistant, REST API and webhooks — all WaBridge features explained.","url":"https://wabridge.example/features.html","image":"https://wabridge.example/assets/img/og-wabridge.jpg","publisher":{"@id":"https://wabridge.example/#org"},"featureList":["Shared WhatsApp team inbox","Contacts CRM with consent tracking","Safe bulk campaigns with pacing","Keyword, welcome and away auto-replies","AI assistant","REST API and webhooks","Optional official WhatsApp Cloud API channel"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://wabridge.example/"},{"@type":"ListItem","position":2,"name":"Features","item":"https://wabridge.example/features.html"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+<defs>
+<symbol id="i-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+<symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 15-6v14L3 13z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/><path d="M21 9v6"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 4h6M9 13v1M15 13v1M2 14h2M20 14h2"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="M16 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h7v-4M17 21v.01"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0z"/><path d="M12 18v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12 12 20l-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 5 4h14l2 5"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v8h14v-8M10 20v-5h4v5"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5M22 9v6"/></symbol>
+<symbol id="i-brief" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+<symbol id="i-windows" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 5.5 10 4.5v7H3zM12 4.2 21 3v8.5h-9zM3 13.5h7v6.9L3 19.4zM12 13.5h9V21l-9-1.2z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+</defs>
+</svg>
+<header class="site-header">
+<div class="container nav">
+<a class="brand" href="index.html" aria-label="WaBridge home">
+<img src="assets/img/logo-96.webp" srcset="assets/img/logo-96.webp 2x, assets/img/logo-128.webp 3x" width="44" height="44" alt="" decoding="async">
+<span>WaBridge</span>
+</a>
+<nav aria-label="Main">
+<ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html" aria-current="page">Features</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="use-cases.html">Use cases</a></li><li><a href="contact.html">Contact</a></li></ul>
+</nav>
+<a class="btn btn-primary btn-sm nav-cta" href="how-it-works.html#install">Get started <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+<details class="mobile-nav">
+<summary aria-label="Open menu"><svg class="menu-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="menu-close" aria-hidden="true"><use href="#i-x"/></svg></summary>
+<nav class="mobile-panel" aria-label="Mobile">
+<a href="index.html">Home</a><a href="features.html" aria-current="page">Features</a><a href="how-it-works.html">How it works</a><a href="use-cases.html">Use cases</a><a href="contact.html">Contact</a>
+<a class="btn btn-primary" href="how-it-works.html#install">Get started</a>
+</nav>
+</details>
+</div>
+</header>
+<main id="main">
+<section class="page-hero">
+<div class="container">
+<ol class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page">Features</li></ol>
+<div class="center">
+<span class="eyebrow"><span class="dot"></span>Features</span>
+<h1>Everything your team needs to <span class="grad">sell and support on WhatsApp</span></h1>
+<p class="lead">One workspace for conversations, customers, broadcasts and automation — with the safety habits that keep a business number in good standing.</p>
+<div class="pill-row center-row">
+<a class="pill" href="#inbox"><svg aria-hidden="true"><use href="#i-inbox"/></svg>Inbox</a>
+<a class="pill" href="#contacts"><svg aria-hidden="true"><use href="#i-users"/></svg>Contacts</a>
+<a class="pill" href="#campaigns"><svg aria-hidden="true"><use href="#i-megaphone"/></svg>Campaigns</a>
+<a class="pill" href="#automations"><svg aria-hidden="true"><use href="#i-zap"/></svg>Automations</a>
+<a class="pill" href="#ai"><svg aria-hidden="true"><use href="#i-spark"/></svg>AI assistant</a>
+<a class="pill" href="#numbers"><svg aria-hidden="true"><use href="#i-qr"/></svg>Numbers</a>
+<a class="pill" href="#api"><svg aria-hidden="true"><use href="#i-code"/></svg>API</a>
+<a class="pill" href="#security"><svg aria-hidden="true"><use href="#i-shield"/></svg>Security</a>
+</div>
+</div>
+<div class="glass shot-stage mt-2">
+<figure class="shot mb-0">
+<div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>localhost:8080 · Overview</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-overview-720.avif 720w, assets/img/app-overview-1200.avif 1200w, assets/img/app-overview-1800.avif 1800w, assets/img/app-overview-2400.avif 2400w" sizes="(min-width: 1220px) 1140px, 94vw"><source type="image/webp" srcset="assets/img/app-overview-720.webp 720w, assets/img/app-overview-1200.webp 1200w, assets/img/app-overview-1800.webp 1800w, assets/img/app-overview-2400.webp 2400w" sizes="(min-width: 1220px) 1140px, 94vw"><img src="assets/img/app-overview-2400.webp" alt="WaBridge overview dashboard with messages received and sent, automated replies, median first-reply time and a 14-day message chart" width="2880" height="1800" loading="eager" fetchpriority="high" decoding="async"></picture>
+</figure>
+</div>
+</div>
+</section>
+<section class="section" id="inbox">
+<div class="container">
+<div class="split feature-row">
+<div class="reveal">
+<span class="kicker-num">01 · Team inbox</span>
+<h2>Answer faster, together</h2>
+<p class="lead">Every message from every linked number appears in a single live inbox — no refreshing, no shared phone.</p>
+<ul class="checks">
+<li><span><b>Assign and filter.</b> Open, pending and closed views, plus “Mine” and “Unassigned”.</span></li>
+<li><span><b>Templates on a slash.</b> Type <span class="kbd">/address</span> or <span class="kbd">/pay</span> to drop a saved reply.</span></li>
+<li><span><b>Delivery ticks.</b> See sent, delivered and read for every message.</span></li>
+<li><span><b>Notes and tags.</b> Private notes for teammates and tags that feed your campaigns.</span></li>
+<li><span><b>Photos, PDFs and voice notes</b> in both directions, plus an AI-drafted reply button.</span></li>
+</ul>
+</div>
+<div class="glass shot-stage reveal">
+<figure class="shot mb-0"><div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Inbox</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-inbox-720.avif 720w, assets/img/app-inbox-1200.avif 1200w, assets/img/app-inbox-1800.avif 1800w, assets/img/app-inbox-2400.avif 2400w" sizes="(min-width: 920px) 560px, 94vw"><source type="image/webp" srcset="assets/img/app-inbox-720.webp 720w, assets/img/app-inbox-1200.webp 1200w, assets/img/app-inbox-1800.webp 1800w, assets/img/app-inbox-2400.webp 2400w" sizes="(min-width: 920px) 560px, 94vw"><img src="assets/img/app-inbox-2400.webp" alt="Shared inbox with conversation list, chat thread and customer details panel" width="2880" height="1800" loading="lazy" decoding="async"></picture>
+</figure>
+</div>
+</div>
+<div class="split reverse feature-row" id="mobile">
+<div class="reveal">
+<span class="kicker-num">On the go</span>
+<h2>Works on your phone's browser too</h2>
+<p class="lead">Reply from the shop floor or a site visit. The dashboard adapts to small screens, so the team can keep working away from the desk.</p>
+<ul class="checks">
+<li><span>Full inbox, contacts and campaign status on mobile</span></li>
+<li><span>Light and dark themes</span></li>
+<li><span>Live updates without pulling to refresh</span></li>
+</ul>
+</div>
+<div class="reveal">
+<div class="phone"><picture><source type="image/avif" srcset="assets/img/app-inbox-mobile-400.avif 400w, assets/img/app-inbox-mobile-800.avif 800w, assets/img/app-inbox-mobile-1170.avif 1170w" sizes="300px"><source type="image/webp" srcset="assets/img/app-inbox-mobile-400.webp 400w, assets/img/app-inbox-mobile-800.webp 800w, assets/img/app-inbox-mobile-1170.webp 1170w" sizes="300px"><img src="assets/img/app-inbox-mobile-1170.webp" alt="WaBridge chat thread on a mobile screen" width="1170" height="2532" loading="lazy" decoding="async"></picture></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="contacts">
+<div class="container split">
+<div class="reveal">
+<span class="kicker-num">02 · Contacts &amp; consent</span>
+<h2>A customer list that remembers who said yes</h2>
+<p class="lead">Everyone who messages you is saved automatically. Bring the rest in from a spreadsheet in a minute.</p>
+<ul class="checks">
+<li><span><b>CSV import with column mapping</b> — extra columns like city or order ID become variables such as <span class="kbd">&#123;&#123;city&#125;&#125;</span>.</span></li>
+<li><span><b>Consent tracking.</b> Opted in, no consent yet, or opted out — at a glance.</span></li>
+<li><span><b>STOP and START handled for you,</b> including custom words like “BAND KARO”.</span></li>
+<li><span><b>Bulk tagging,</b> “is this number on WhatsApp?” checks and one-click CSV export.</span></li>
+</ul>
+</div>
+<div class="glass shot-stage reveal">
+<figure class="shot mb-0"><div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Contacts</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-contacts-720.avif 720w, assets/img/app-contacts-1200.avif 1200w, assets/img/app-contacts-1800.avif 1800w, assets/img/app-contacts-2400.avif 2400w" sizes="(min-width: 920px) 560px, 94vw"><source type="image/webp" srcset="assets/img/app-contacts-720.webp 720w, assets/img/app-contacts-1200.webp 1200w, assets/img/app-contacts-1800.webp 1800w, assets/img/app-contacts-2400.webp 2400w" sizes="(min-width: 920px) 560px, 94vw"><img src="assets/img/app-contacts-2400.webp" alt="Contacts table with tags and consent status" width="2880" height="1800" loading="lazy" decoding="async"></picture>
+</figure>
+</div>
+</div>
+</section>
+<section class="section" id="campaigns">
+<div class="container">
+<div class="split reverse feature-row">
+<div class="reveal">
+<span class="kicker-num">03 · Campaigns</span>
+<h2>Broadcasts that read like personal messages</h2>
+<p class="lead">A five-step wizard — sender, audience, message, safety, launch — with a live preview of exactly what each person will see.</p>
+<ul class="checks">
+<li><span><b>Personalised.</b> <span class="kbd">&#123;&#123;first_name&#125;&#125;</span> and any contact field, plus <span class="kbd">{Hi|Hello|Namaste}</span> variations so no two messages are identical.</span></li>
+<li><span><b>Photos, videos and PDFs</b> with captions.</span></li>
+<li><span><b>Paced sending</b> with random gaps, daily caps, quiet hours and auto-pause after repeated failures.</span></li>
+<li><span><b>Test first, schedule later.</b> Send yourself a preview, then start now or at a set time.</span></li>
+<li><span><b>Results that matter.</b> Sent, failed, skipped and reply rate — with a one-click retry for failures.</span></li>
+</ul>
+</div>
+<div class="glass shot-stage reveal">
+<figure class="shot mb-0"><div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>New campaign · Message</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-campaign-editor-720.avif 720w, assets/img/app-campaign-editor-1200.avif 1200w, assets/img/app-campaign-editor-1800.avif 1800w, assets/img/app-campaign-editor-2400.avif 2400w" sizes="(min-width: 920px) 560px, 94vw"><source type="image/webp" srcset="assets/img/app-campaign-editor-720.webp 720w, assets/img/app-campaign-editor-1200.webp 1200w, assets/img/app-campaign-editor-1800.webp 1800w, assets/img/app-campaign-editor-2400.webp 2400w" sizes="(min-width: 920px) 560px, 94vw"><img src="assets/img/app-campaign-editor-2400.webp" alt="Campaign editor with message variables and a live WhatsApp-style preview" width="2880" height="1800" loading="lazy" decoding="async"></picture>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="automations">
+<div class="container split">
+<div class="reveal">
+<span class="kicker-num">04 · Automations</span>
+<h2>Instant replies, around the clock</h2>
+<p class="lead">Rules run in a clear order for every incoming message, so you always know why a reply was sent.</p>
+<ul class="checks">
+<li><span><b>Welcome</b> for first-time contacts, <b>away</b> outside business hours, <b>keyword</b> and <b>catch-all</b> rules.</span></li>
+<li><span><b>Contains, exact, starts-with or regex</b> matching — Hinglish keywords welcome.</span></li>
+<li><span><b>Cooldowns and priorities</b> so the same customer is never spammed with repeats.</span></li>
+<li><span><b>Auto-tagging</b> — label everyone who asks about price as a lead.</span></li>
+<li><span><b>A safe simulator</b> to test any message without sending anything.</span></li>
+<li><span><b>Human takeover:</b> bots go quiet once a teammate replies.</span></li>
+</ul>
+</div>
+<div class="glass shot-stage reveal">
+<figure class="shot mb-0"><div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Automations &amp; AI</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-automations-720.avif 720w, assets/img/app-automations-1200.avif 1200w, assets/img/app-automations-1800.avif 1800w, assets/img/app-automations-2400.avif 2400w" sizes="(min-width: 920px) 560px, 94vw"><source type="image/webp" srcset="assets/img/app-automations-720.webp 720w, assets/img/app-automations-1200.webp 1200w, assets/img/app-automations-1800.webp 1800w, assets/img/app-automations-2400.webp 2400w" sizes="(min-width: 920px) 560px, 94vw"><img src="assets/img/app-automations-2400.webp" alt="Automation rules list with welcome, away, keyword and AI rules and a test panel" width="2880" height="1800" loading="lazy" decoding="async"></picture>
+</figure>
+</div>
+</div>
+</section>
+<section class="section" id="ai">
+<div class="container split reverse">
+<div class="reveal">
+<span class="kicker-num">05 · AI assistant</span>
+<h2>An assistant that answers from your own facts</h2>
+<p class="lead">Add your prices, timings, delivery areas and policies in plain text. The assistant replies only from what you wrote — and says a teammate will follow up when it does not know.</p>
+<ul class="checks">
+<li><span>Replies in English, Hindi or Hinglish — matching the customer</span></li>
+<li><span>Hand-off words such as “agent” or “call me” pause the bot and flag the chat</span></li>
+<li><span>Per-chat hourly limits, never active in group chats</span></li>
+<li><span>Draft-only mode in the inbox: generate a reply, edit it, then send</span></li>
+<li><span>Uses your own Anthropic API key — no markup, no lock-in</span></li>
+</ul>
+</div>
+<div class="glass card reveal">
+<p class="note mt-0">Example conversation</p>
+<div class="chat" role="img" aria-label="Example chat where a customer asks about delivery and the AI assistant answers">
+<div class="bubble in">Bhaiya, Pune delivery hoti hai? Kitne din lagenge?</div>
+<div class="bubble out"><small>AI</small>Haan ji! Hum poore India mein deliver karte hain. Pune mein 3–5 din lagte hain, aur ₹999 se upar free delivery hai 🙂</div>
+<div class="bubble in">Great. COD available hai?</div>
+<div class="bubble out"><small>AI</small>Abhi hum UPI aur card payment lete hain. COD ke liye hamari team aapko jaldi confirm karegi 🙏</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="numbers">
+<div class="container split">
+<div class="reveal">
+<span class="kicker-num">06 · Numbers</span>
+<h2>Link several numbers, see their health</h2>
+<p class="lead">Sales, support and each store location can run on their own number, all inside one workspace.</p>
+<ul class="checks">
+<li><span><b>QR or 8-character pairing code</b> to link — just like WhatsApp Web.</span></li>
+<li><span><b>Warm-up day and daily limit</b> visible on every number.</span></li>
+<li><span><b>Per-number proxy</b> support and automatic reconnect after restarts.</span></li>
+<li><span><b>Disconnect alerts</b> in the activity log and through webhooks.</span></li>
+</ul>
+</div>
+<div class="glass shot-stage reveal">
+<figure class="shot mb-0"><div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>WhatsApp numbers</span></div>
+<picture><source type="image/avif" srcset="assets/img/app-numbers-720.avif 720w, assets/img/app-numbers-1200.avif 1200w, assets/img/app-numbers-1800.avif 1800w, assets/img/app-numbers-2400.avif 2400w" sizes="(min-width: 920px) 560px, 94vw"><source type="image/webp" srcset="assets/img/app-numbers-720.webp 720w, assets/img/app-numbers-1200.webp 1200w, assets/img/app-numbers-1800.webp 1800w, assets/img/app-numbers-2400.webp 2400w" sizes="(min-width: 920px) 560px, 94vw"><img src="assets/img/app-numbers-2400.webp" alt="Two connected WhatsApp numbers with today's message counts and warm-up day" width="2880" height="1800" loading="lazy" decoding="async"></picture>
+</figure>
+</div>
+</div>
+</section>
+<section class="section" id="api">
+<div class="container split reverse">
+<div class="reveal">
+<span class="kicker-num">07 · API &amp; webhooks</span>
+<h2>Plug WhatsApp into the tools you already use</h2>
+<p class="lead">Send OTPs, order confirmations and invoices from your website, billing software or n8n — and receive every incoming message as a signed webhook.</p>
+<ul class="checks">
+<li><span>Simple REST API with per-app keys you can revoke</span></li>
+<li><span>HMAC-signed outgoing webhooks for messages, opt-outs and campaign results</span></li>
+<li><span>Full access to the underlying engine: groups, channels, labels, status and more</span></li>
+<li><span>Automatic fallback to the official channel when no linked number is online</span></li>
+</ul>
+</div>
+<div class="reveal">
+<pre class="code" aria-label="Example API request"><code>curl -X POST https://your-server/api/v1/messages \
+  -H "X-WaBridge-Key: wb_live_••••••" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "919876543210",
+    "text": "Your order #4521 has shipped 🚚"
+  }'
+
+# → 201 { "id": 812, "status": "sent" }</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="security">
+<div class="container">
+<div class="center reveal">
+<span class="kicker-num">08 · Security &amp; privacy</span>
+<h2>Your conversations stay on your machine</h2>
+<p class="lead">WaBridge is software you run yourself. There is no WaBridge cloud that sees your chats.</p>
+</div>
+<div class="grid grid-3 mt-2">
+<article class="glass card reveal"><span class="icon"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Signed everything</h3><p>Engine events, outgoing webhooks and Meta callbacks are verified with HMAC signatures; forged requests are rejected.</p></article>
+<article class="glass card reveal"><span class="icon"><svg aria-hidden="true"><use href="#i-users"/></svg></span><h3>Roles &amp; sessions</h3><p>Admin and agent roles, scrypt-hashed passwords and HTTP-only session cookies. API keys are stored hashed.</p></article>
+<article class="glass card reveal"><span class="icon"><svg aria-hidden="true"><use href="#i-server"/></svg></span><h3>Private by default</h3><p>The dashboard listens only on your own computer unless you choose to expose it, ideally behind HTTPS.</p></article>
+</div>
+</div>
+</section>
+<section class="section" id="official">
+<div class="container narrow">
+<div class="glass card reveal">
+<span class="kicker-num">09 · Optional official channel</span>
+<h2 class="mt-0">Meta Cloud API, side by side</h2>
+<p>Already have a Meta Business account? Add your Phone Number ID, WABA ID and a permanent token to run approved-template campaigns at scale and receive messages through Meta's webhook — in the same inbox as your QR-linked numbers.</p>
+<div class="actions"><a class="btn btn-primary" href="how-it-works.html#official">How to connect it <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+</div>
+</div>
+</section>
+<section class="section-tight">
+<div class="container">
+<div class="cta-band center reveal">
+<h2>See it on your own laptop</h2>
+<p class="lead">Install it, link a test number and try every feature in an afternoon.</p>
+<div class="actions"><a class="btn btn-glass" href="how-it-works.html#install">Install WaBridge <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-primary" href="use-cases.html">Browse use cases</a></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<a class="brand" href="index.html"><img src="assets/img/logo-96.webp" srcset="assets/img/logo-96.webp 2x, assets/img/logo-128.webp 3x" width="44" height="44" alt="" loading="lazy" decoding="async"><span>WaBridge</span></a>
+<p class="footer-about">A self-hosted workspace for business conversations on WhatsApp — inbox, campaigns, automations and AI, on your own machine.</p>
+</div>
+<div>
+<h2>Product</h2>
+<ul>
+<li><a href="features.html">Features</a></li>
+<li><a href="how-it-works.html">How it works</a></li>
+<li><a href="how-it-works.html#install">Install on Windows</a></li>
+<li><a href="features.html#api">Developer API</a></li>
+</ul>
+</div>
+<div>
+<h2>Solutions</h2>
+<ul>
+<li><a href="use-cases.html#retail">Retail &amp; D2C</a></li>
+<li><a href="use-cases.html#education">Coaching &amp; education</a></li>
+<li><a href="use-cases.html#real-estate">Real estate</a></li>
+<li><a href="use-cases.html#agencies">Agencies</a></li>
+</ul>
+</div>
+<div>
+<h2>Company</h2>
+<ul>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy.html">Privacy notice</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-note">
+<span>© 2026 WaBridge. All rights reserved.</span>
+<span>WaBridge is independent software and is not affiliated with, endorsed or sponsored by WhatsApp or Meta.</span>
+</div>
+</div>
+</footer>
+<script src="assets/js/main.4219dbbce7.js" defer></script>
+</body>
+</html>
