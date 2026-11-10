@@ -12,11 +12,12 @@ const FEATURES = [
 ];
 
 export default function AuthPage({ mode, onDone }) {
+  const [isSetup, setIsSetup] = useState(mode === 'setup');
   const [form, setForm] = useState({ name: '', email: '', password: '', businessName: '' });
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
-  const setup = mode === 'setup';
+  const setup = isSetup;
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = async (e) => {
@@ -95,6 +96,37 @@ export default function AuthPage({ mode, onDone }) {
             <Button type="submit" size="lg" loading={busy} className="w-full">
               {setup ? 'Create workspace' : 'Sign in'} <ArrowRight className="size-4" />
             </Button>
+            <div className="pt-2 text-center text-sm text-slate-500 dark:text-slate-400">
+              {setup ? (
+                <p>
+                  Already have an account?{' '}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSetup(false);
+                      setError('');
+                    }}
+                    className="font-semibold text-brand-600 hover:underline dark:text-brand-400"
+                  >
+                    Sign in
+                  </button>
+                </p>
+              ) : (
+                <p>
+                  New to WaBridge?{' '}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSetup(true);
+                      setError('');
+                    }}
+                    className="font-semibold text-brand-600 hover:underline dark:text-brand-400"
+                  >
+                    Create workspace (Sign up)
+                  </button>
+                </p>
+              )}
+            </div>
           </div>
         </form>
       </section>

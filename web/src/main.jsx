@@ -62,6 +62,14 @@ function App() {
             path="/login"
             element={state.user ? <Navigate to="/" replace /> : <AuthPage mode={state.setupRequired ? 'setup' : 'login'} onDone={setUser} />}
           />
+          <Route
+            path="/signup"
+            element={state.user ? <Navigate to="/" replace /> : <AuthPage mode="setup" onDone={setUser} />}
+          />
+          <Route
+            path="/setup"
+            element={state.user ? <Navigate to="/" replace /> : <AuthPage mode="setup" onDone={setUser} />}
+          />
           <Route element={state.user ? <Layout /> : <Navigate to="/login" replace />}>
             <Route index element={<Overview />} />
             <Route path="inbox" element={<Inbox />} />
