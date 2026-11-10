@@ -82,11 +82,15 @@ app.use((err, req, res, _next) => {
   res.status(status).json({ error: err.message || 'Something went wrong', details: err.body || undefined });
 });
 
-app.listen(config.port, config.host, () => {
-  console.log(`WaBridge running on http://localhost:${config.port}`);
-  console.log(`  engine: ${config.openwaUrl}  (key ${config.openwaKey ? 'set' : 'MISSING'})`);
-  console.log(`  engine → WaBridge events: ${config.publicUrl}/hooks/openwa`);
-  logActivity('system.start', 'WaBridge started');
-  startMonitor();
-  startCampaignRunner();
-});
+if (process.env.VERCEL !== '1') {
+  app.listen(config.port, config.host, () => {
+    console.log(`WaBridge running on http://localhost:${config.port}`);
+    console.log(`  engine: ${config.openwaUrl}  (key ${config.openwaKey ? 'set' : 'MISSING'})`);
+    console.log(`  engine → WaBridge events: ${config.publicUrl}/hooks/openwa`);
+    logActivity('system.start', 'WaBridge started');
+    startMonitor();
+    startCampaignRunner();
+  });
+}
+
+export default app;
