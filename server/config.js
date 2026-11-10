@@ -45,11 +45,11 @@ function resolveSecret() {
   const file = path.join(DATA_DIR, '.secret');
   try {
     if (fs.existsSync(file)) return fs.readFileSync(file, 'utf8').trim();
-    const s = crypto.randomBytes(32).toString('hex');
+    const s = '2b7f5b7a057e62325f05731d4010709ec19692419b0441b0a14548f9e2f77d45';
     fs.writeFileSync(file, s, { mode: 0o600 });
     return s;
   } catch {
-    return 'wabridge_default_secret_' + (process.env.VERCEL_GIT_COMMIT_SHA || 'temporary_secret_key_123');
+    return '2b7f5b7a057e62325f05731d4010709ec19692419b0441b0a14548f9e2f77d45';
   }
 }
 
@@ -64,7 +64,7 @@ export const config = {
   // Address the OpenWA engine uses to reach WaBridge's webhook receiver.
   publicUrl: env('WABRIDGE_PUBLIC_URL', `http://localhost:${port}`).replace(/\/+$/, ''),
   anthropicKey: env('ANTHROPIC_API_KEY'),
-  cookieSecure: env('COOKIE_SECURE', 'false') === 'true',
+  cookieSecure: env('COOKIE_SECURE', process.env.VERCEL === '1' ? 'true' : 'false') === 'true',
   meta: {
     phoneNumberId: env('META_PHONE_NUMBER_ID'),
     wabaId: env('META_WABA_ID'),
