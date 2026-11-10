@@ -143,7 +143,7 @@ export default function Layout() {
     await api.post('/api/auth/logout').catch(() => {});
     disconnectLive();
     setUser(null);
-    navigate('/login');
+    window.location.href = '/';
   };
 
   const brand = (
