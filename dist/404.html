@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://wabridge-app.vercel.app; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Page not found — WaBridge</title>
 <meta name="description" content="The page you were looking for could not be found.">
 <meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://wabridge.example/404.html">
+<link rel="canonical" href="https://wabridge-app.vercel.app/404.html">
 <meta name="theme-color" content="#059669">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="WaBridge">
 <meta property="og:title" content="Page not found — WaBridge">
 <meta property="og:description" content="The page you were looking for could not be found.">
-<meta property="og:url" content="https://wabridge.example/404.html">
-<meta property="og:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<meta property="og:url" content="https://wabridge-app.vercel.app/404.html">
+<meta property="og:image" content="https://wabridge-app.vercel.app/assets/img/og-wabridge.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="WaBridge — self-hosted WhatsApp team inbox and automation">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Page not found — WaBridge">
 <meta name="twitter:description" content="The page you were looking for could not be found.">
-<meta name="twitter:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<meta name="twitter:image" content="https://wabridge-app.vercel.app/assets/img/og-wabridge.jpg">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -68,19 +68,23 @@
 </svg>
 <header class="site-header">
 <div class="container nav">
-<a class="brand" href="/index.html" aria-label="WaBridge home">
+<a class="brand" href="/" aria-label="WaBridge home">
 <img src="/assets/img/logo-96.webp" srcset="/assets/img/logo-96.webp 2x, /assets/img/logo-128.webp 3x" width="44" height="44" alt="" decoding="async">
 <span>WaBridge</span>
 </a>
 <nav aria-label="Main">
 <ul class="nav-links"><li><a href="/index.html">Home</a></li><li><a href="/features.html">Features</a></li><li><a href="/how-it-works.html">How it works</a></li><li><a href="/use-cases.html">Use cases</a></li><li><a href="/contact.html">Contact</a></li></ul>
 </nav>
-<a class="btn btn-primary btn-sm nav-cta" href="/how-it-works.html#install">Get started <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+<div style="display:flex;align-items:center;gap:0.75rem;">
+<a class="btn btn-glass btn-sm" href="/login">Sign in</a>
+<a class="btn btn-primary btn-sm nav-cta" href="/signup">Open Workspace <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</div>
 <details class="mobile-nav">
 <summary aria-label="Open menu"><svg class="menu-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="menu-close" aria-hidden="true"><use href="#i-x"/></svg></summary>
 <nav class="mobile-panel" aria-label="Mobile">
 <a href="/index.html">Home</a><a href="/features.html">Features</a><a href="/how-it-works.html">How it works</a><a href="/use-cases.html">Use cases</a><a href="/contact.html">Contact</a>
-<a class="btn btn-primary" href="/how-it-works.html#install">Get started</a>
+<a class="btn btn-glass" href="/login">Sign in</a>
+<a class="btn btn-primary" href="/signup">Open Workspace</a>
 </nav>
 </details>
 </div>
@@ -131,6 +135,7 @@
 <ul>
 <li><a href="/contact.html">Contact</a></li>
 <li><a href="/privacy.html">Privacy notice</a></li>
+<li><a href="mailto:dex3938@gmail.com">dex3938@gmail.com</a></li>
 </ul>
 </div>
 </div>

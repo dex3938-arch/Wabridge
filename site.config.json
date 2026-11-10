@@ -1,11 +1,11 @@
 {
-  "siteUrl": "https://wabridge.example",
+  "siteUrl": "https://wabridge-app.vercel.app",
   "siteName": "WaBridge",
   "publisher": "WaBridge",
-  "email": "",
+  "email": "dex3938@gmail.com",
   "whatsapp": "",
-  "appUrl": "",
-  "leadEndpoint": "",
+  "appUrl": "/app",
+  "leadEndpoint": "https://wabridge-app.vercel.app/api/public/leads",
   "locale": "en_IN",
   "country": "IN"
 }

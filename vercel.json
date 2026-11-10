@@ -1,7 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "web/dist",
-  "framework": "vite",
+  "outputDirectory": "dist_bundle",
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -12,8 +11,84 @@
       "destination": "/api/index.js"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/login",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/signup",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/setup",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/inbox(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/contacts(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/campaigns(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/automations(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/templates(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/numbers(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/integrations(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/explorer(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/team(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/activity(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/settings(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/app(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/features",
+      "destination": "/features.html"
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how-it-works.html"
+    },
+    {
+      "source": "/use-cases",
+      "destination": "/use-cases.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
     }
   ]
 }

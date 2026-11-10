@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://wabridge.example/sitemap.xml
+Sitemap: https://wabridge-app.vercel.app/sitemap.xml

@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://wabridge-app.vercel.app; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>WaBridge — Self-Hosted WhatsApp Inbox, CRM &amp; Automation</title>
 <meta name="description" content="Run every WhatsApp chat from one shared inbox. WaBridge adds team logins, safe campaigns, auto-replies and AI — self-hosted and linked by QR in minutes.">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://wabridge.example/">
+<link rel="canonical" href="https://wabridge-app.vercel.app/">
 <meta name="theme-color" content="#059669">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WaBridge">
 <meta property="og:title" content="WaBridge — one calm team inbox for every WhatsApp chat">
 <meta property="og:description" content="Run every WhatsApp chat from one shared inbox. WaBridge adds team logins, safe campaigns, auto-replies and AI — self-hosted and linked by QR in minutes.">
-<meta property="og:url" content="https://wabridge.example/">
-<meta property="og:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<meta property="og:url" content="https://wabridge-app.vercel.app/">
+<meta property="og:image" content="https://wabridge-app.vercel.app/assets/img/og-wabridge.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="WaBridge — self-hosted WhatsApp team inbox and automation">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="WaBridge — one calm team inbox for every WhatsApp chat">
 <meta name="twitter:description" content="Run every WhatsApp chat from one shared inbox. WaBridge adds team logins, safe campaigns, auto-replies and AI — self-hosted and linked by QR in minutes.">
-<meta name="twitter:image" content="https://wabridge.example/assets/img/og-wabridge.jpg">
+<meta name="twitter:image" content="https://wabridge-app.vercel.app/assets/img/og-wabridge.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -32,8 +32,8 @@
 <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/boutique-owner-reading-whatsapp-order-640.avif 640w, assets/img/boutique-owner-reading-whatsapp-order-960.avif 960w, assets/img/boutique-owner-reading-whatsapp-order-1344.avif 1344w" imagesizes="(min-width: 920px) 560px, 100vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/main.6498ea56d8.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://wabridge.example/#org","name":"WaBridge","url":"https://wabridge.example/","logo":"https://wabridge.example/assets/img/logo-512.png"},{"@type":"WebSite","@id":"https://wabridge.example/#website","url":"https://wabridge.example/","name":"WaBridge","publisher":{"@id":"https://wabridge.example/#org"},"inLanguage":"en-IN"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"WaBridge","applicationCategory":"BusinessApplication","operatingSystem":"Windows, macOS, Linux (Docker)","description":"Run every WhatsApp chat from one shared inbox. WaBridge adds team logins, safe campaigns, auto-replies and AI — self-hosted and linked by QR in minutes.","url":"https://wabridge.example/","image":"https://wabridge.example/assets/img/og-wabridge.jpg","publisher":{"@id":"https://wabridge.example/#org"},"featureList":["Shared WhatsApp team inbox","Contacts CRM with consent tracking","Safe bulk campaigns with pacing","Keyword, welcome and away auto-replies","AI assistant","REST API and webhooks","Optional official WhatsApp Cloud API channel"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://wabridge-app.vercel.app/#org","name":"WaBridge","url":"https://wabridge-app.vercel.app/","logo":"https://wabridge-app.vercel.app/assets/img/logo-512.png","email":"dex3938@gmail.com"},{"@type":"WebSite","@id":"https://wabridge-app.vercel.app/#website","url":"https://wabridge-app.vercel.app/","name":"WaBridge","publisher":{"@id":"https://wabridge-app.vercel.app/#org"},"inLanguage":"en-IN"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"WaBridge","applicationCategory":"BusinessApplication","operatingSystem":"Windows, macOS, Linux (Docker)","description":"Run every WhatsApp chat from one shared inbox. WaBridge adds team logins, safe campaigns, auto-replies and AI — self-hosted and linked by QR in minutes.","url":"https://wabridge-app.vercel.app/","image":"https://wabridge-app.vercel.app/assets/img/og-wabridge.jpg","publisher":{"@id":"https://wabridge-app.vercel.app/#org"},"featureList":["Shared WhatsApp team inbox","Contacts CRM with consent tracking","Safe bulk campaigns with pacing","Keyword, welcome and away auto-replies","AI assistant","REST API and webhooks","Optional official WhatsApp Cloud API channel"]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -71,19 +71,23 @@
 </svg>
 <header class="site-header">
 <div class="container nav">
-<a class="brand" href="index.html" aria-label="WaBridge home">
+<a class="brand" href="/" aria-label="WaBridge home">
 <img src="assets/img/logo-96.webp" srcset="assets/img/logo-96.webp 2x, assets/img/logo-128.webp 3x" width="44" height="44" alt="" decoding="async">
 <span>WaBridge</span>
 </a>
 <nav aria-label="Main">
 <ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="features.html">Features</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="use-cases.html">Use cases</a></li><li><a href="contact.html">Contact</a></li></ul>
 </nav>
-<a class="btn btn-primary btn-sm nav-cta" href="how-it-works.html#install">Get started <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+<div style="display:flex;align-items:center;gap:0.75rem;">
+<a class="btn btn-glass btn-sm" href="/login">Sign in</a>
+<a class="btn btn-primary btn-sm nav-cta" href="/signup">Open Workspace <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</div>
 <details class="mobile-nav">
 <summary aria-label="Open menu"><svg class="menu-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="menu-close" aria-hidden="true"><use href="#i-x"/></svg></summary>
 <nav class="mobile-panel" aria-label="Mobile">
 <a href="index.html" aria-current="page">Home</a><a href="features.html">Features</a><a href="how-it-works.html">How it works</a><a href="use-cases.html">Use cases</a><a href="contact.html">Contact</a>
-<a class="btn btn-primary" href="how-it-works.html#install">Get started</a>
+<a class="btn btn-glass" href="/login">Sign in</a>
+<a class="btn btn-primary" href="/signup">Open Workspace</a>
 </nav>
 </details>
 </div>
@@ -96,8 +100,8 @@
 <h1>Every WhatsApp chat, <span class="grad">one calm team inbox.</span></h1>
 <p class="lead">WaBridge links your business number by QR code and gives your team a shared inbox, a simple CRM, safe broadcast campaigns, keyword auto-replies and an AI assistant — all running on your own laptop or server.</p>
 <div class="actions">
-<a class="btn btn-primary" href="how-it-works.html#install">Install on Windows <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-<a class="btn btn-glass" href="features.html">Explore features</a>
+<a class="btn btn-primary" href="/signup">Open Workspace <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+<a class="btn btn-glass" href="/login">Sign in</a>
 </div>
 <ul class="hero-points">
 <li><svg aria-hidden="true"><use href="#i-check"/></svg>No Meta App ID needed</li>
@@ -352,6 +356,7 @@
 <ul>
 <li><a href="contact.html">Contact</a></li>
 <li><a href="privacy.html">Privacy notice</a></li>
+<li><a href="mailto:dex3938@gmail.com">dex3938@gmail.com</a></li>
 </ul>
 </div>
 </div>
