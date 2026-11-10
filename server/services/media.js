@@ -4,7 +4,11 @@ import crypto from 'node:crypto';
 import { DATA_DIR } from '../config.js';
 
 export const MEDIA_DIR = path.join(DATA_DIR, 'media');
-fs.mkdirSync(MEDIA_DIR, { recursive: true });
+try {
+  fs.mkdirSync(MEDIA_DIR, { recursive: true });
+} catch {
+  /* ignore on restricted environments */
+}
 
 const EXT = {
   'image/jpeg': 'jpg',

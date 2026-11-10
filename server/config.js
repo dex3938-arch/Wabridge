@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -25,19 +26,31 @@ function loadDotEnv(file) {
 loadDotEnv(path.join(ROOT, '.env'));
 
 const env = (k, d = '') => (process.env[k] ?? d).toString().trim();
+const isServerless = process.env.VERCEL === '1' || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 
-export const DATA_DIR = path.resolve(ROOT, env('DATA_DIR', './data'));
-fs.mkdirSync(DATA_DIR, { recursive: true });
+export const DATA_DIR = isServerless
+  ? path.join(os.tmpdir(), 'wabridge-data')
+  : path.resolve(ROOT, env('DATA_DIR', './data'));
+
+try {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch {
+  /* ignore on restricted environments */
+}
 
 // A stable secret for signing login tokens. Generated once and kept in data/ when not provided.
 function resolveSecret() {
   const fromEnv = env('WABRIDGE_SECRET');
   if (fromEnv) return fromEnv;
   const file = path.join(DATA_DIR, '.secret');
-  if (fs.existsSync(file)) return fs.readFileSync(file, 'utf8').trim();
-  const s = crypto.randomBytes(32).toString('hex');
-  fs.writeFileSync(file, s, { mode: 0o600 });
-  return s;
+  try {
+    if (fs.existsSync(file)) return fs.readFileSync(file, 'utf8').trim();
+    const s = crypto.randomBytes(32).toString('hex');
+    fs.writeFileSync(file, s, { mode: 0o600 });
+    return s;
+  } catch {
+    return 'wabridge_default_secret_' + (process.env.VERCEL_GIT_COMMIT_SHA || 'temporary_secret_key_123');
+  }
 }
 
 const port = Number(env('PORT', '8080')) || 8080;

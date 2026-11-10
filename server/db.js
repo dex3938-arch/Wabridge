@@ -1,9 +1,20 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { DATA_DIR } from './config.js';
 
+try {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch {}
+
 export const db = new DatabaseSync(path.join(DATA_DIR, 'wabridge.sqlite'));
-db.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;');
+const isServerless = process.env.VERCEL === '1' || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
+if (!isServerless) {
+  try {
+    db.exec('PRAGMA journal_mode = WAL;');
+  } catch {}
+}
+db.exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;');
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS users (
