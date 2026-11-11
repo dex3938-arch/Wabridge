@@ -28,7 +28,7 @@ const NAV = [
   {
     title: 'Workspace',
     items: [
-      { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
+      { to: '/app', label: 'Overview', icon: LayoutDashboard, end: true },
       { to: '/inbox', label: 'Inbox', icon: MessagesSquare, badge: 'unread' },
       { to: '/contacts', label: 'Contacts', icon: Users },
       { to: '/campaigns', label: 'Campaigns', icon: Megaphone },

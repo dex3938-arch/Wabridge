@@ -30,14 +30,21 @@ const Loading = () => (
 );
 
 function App() {
-  const [state, setState] = useState({ loading: true, user: null, setupRequired: false });
+  const [state, setState] = useState({ loading: true, user: null, setupRequired: false, allowRegistration: true });
   const navigate = useNavigate();
 
   useEffect(() => {
     api
       .get('/api/auth/state')
-      .then((s) => setState({ loading: false, user: s.user, setupRequired: s.setupRequired }))
-      .catch(() => setState({ loading: false, user: null, setupRequired: false }));
+      .then((s) =>
+        setState({
+          loading: false,
+          user: s.user,
+          setupRequired: Boolean(s.setupRequired),
+          allowRegistration: s.allowRegistration ?? true,
+        }),
+      )
+      .catch(() => setState({ loading: false, user: null, setupRequired: false, allowRegistration: true }));
     const out = () => {
       disconnectLive();
       setState((s) => ({ ...s, user: null }));
@@ -52,7 +59,7 @@ function App() {
   }, [state.user]);
 
   if (state.loading) return <Loading />;
-  const setUser = (user) => setState((s) => ({ ...s, user, setupRequired: false }));
+  const setUser = (user) => setState((s) => ({ ...s, user, setupRequired: user ? false : s.setupRequired }));
 
   return (
     <AuthContext.Provider value={{ user: state.user, setUser }}>
@@ -60,18 +67,52 @@ function App() {
         <Routes>
           <Route
             path="/login"
-            element={state.user ? <Navigate to="/" replace /> : <AuthPage mode={state.setupRequired ? 'setup' : 'login'} onDone={setUser} />}
+            element={
+              state.user ? (
+                <Navigate to="/app" replace />
+              ) : (
+                <AuthPage
+                  mode={state.setupRequired ? 'setup' : 'login'}
+                  setupRequired={state.setupRequired}
+                  allowRegistration={state.allowRegistration}
+                  onDone={setUser}
+                />
+              )
+            }
           />
           <Route
             path="/signup"
-            element={state.user ? <Navigate to="/" replace /> : <AuthPage mode="setup" onDone={setUser} />}
+            element={
+              state.user ? (
+                <Navigate to="/app" replace />
+              ) : (
+                <AuthPage
+                  mode={state.setupRequired ? 'setup' : 'register'}
+                  setupRequired={state.setupRequired}
+                  allowRegistration={state.allowRegistration}
+                  onDone={setUser}
+                />
+              )
+            }
           />
           <Route
             path="/setup"
-            element={state.user ? <Navigate to="/" replace /> : <AuthPage mode="setup" onDone={setUser} />}
+            element={
+              state.user ? (
+                <Navigate to="/app" replace />
+              ) : (
+                <AuthPage
+                  mode={state.setupRequired ? 'setup' : 'register'}
+                  setupRequired={state.setupRequired}
+                  allowRegistration={state.allowRegistration}
+                  onDone={setUser}
+                />
+              )
+            }
           />
           <Route element={state.user ? <Layout /> : <Navigate to="/login" replace />}>
             <Route index element={<Overview />} />
+            <Route path="app" element={<Overview />} />
             <Route path="inbox" element={<Inbox />} />
             <Route path="inbox/:id" element={<Inbox />} />
             <Route path="contacts" element={<Contacts />} />
@@ -87,7 +128,7 @@ function App() {
             <Route path="team" element={<Team />} />
             <Route path="activity" element={<Activity />} />
             <Route path="settings" element={<SettingsPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/app" replace />} />
           </Route>
         </Routes>
       </Suspense>

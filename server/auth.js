@@ -64,7 +64,9 @@ export function issueSession(res, user) {
   } catch {}
 }
 export function clearSession(res) {
-  res.setHeader('Set-Cookie', `${COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`);
+  const parts = [`${COOKIE}=`, 'Path=/', 'HttpOnly', 'SameSite=Lax', 'Max-Age=0'];
+  if (config.cookieSecure || process.env.VERCEL === '1') parts.push('Secure');
+  res.setHeader('Set-Cookie', parts.join('; '));
 }
 
 function readCookie(req, name) {

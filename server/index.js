@@ -64,9 +64,13 @@ app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 // Saved chat media (signed-in users only).
 app.use('/media', requireUser, express.static(MEDIA_DIR, { maxAge: '7d', fallthrough: false }));
 
-// Dashboard (built SPA).
+// Marketing landing pages + built dashboard SPA.
+const bundle = path.join(ROOT, 'dist_bundle');
 const dist = path.join(ROOT, 'web', 'dist');
-if (fs.existsSync(dist)) {
+if (fs.existsSync(path.join(bundle, 'app.html'))) {
+  app.use(express.static(bundle, { extensions: ['html'], maxAge: '1h' }));
+  app.get('/{*splat}', (req, res) => res.sendFile(path.join(bundle, 'app.html')));
+} else if (fs.existsSync(dist)) {
   app.use(express.static(dist, { index: false, maxAge: '1h' }));
   app.get('/{*splat}', (req, res) => res.sendFile(path.join(dist, 'index.html')));
 } else {

@@ -260,6 +260,7 @@ export const DEFAULT_SETTINGS = {
     businessName: 'My Business',
     timezone: 'Asia/Kolkata',
     defaultCountryCode: '91',
+    allowRegistration: true,
   },
   businessHours: {
     enabled: false,

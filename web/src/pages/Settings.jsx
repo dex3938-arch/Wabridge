@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Building2, ShieldCheck, Server, UserCircle2, RefreshCw, CheckCircle2, XCircle } from 'lucide-react';
 import { api } from '../lib/api.js';
 import { useLoad, useToast, useAuth } from '../lib/app.jsx';
-import { Badge, Button, Card, CardHeader, CopyButton, Field, Input, PageHeader, Tabs, Textarea, Spinner, Callout } from '../components/ui.jsx';
+import { Badge, Button, Card, CardHeader, CopyButton, Field, Input, PageHeader, Tabs, Textarea, Toggle, Spinner, Callout } from '../components/ui.jsx';
 import { dateTime } from '../lib/format.js';
 
 function Section({ title, description, icon, children, onSave, busy }) {
@@ -109,6 +109,9 @@ export default function SettingsPage() {
             <Field label="Business name" hint="Available as {{business}}"><Input value={general.businessName} onChange={(e) => setGeneral({ ...general, businessName: e.target.value })} /></Field>
             <Field label="Time zone" hint="IANA name"><Input value={general.timezone} onChange={(e) => setGeneral({ ...general, timezone: e.target.value })} /></Field>
             <Field label="Default country code" hint="Added to 10-digit numbers"><Input value={general.defaultCountryCode} onChange={(e) => setGeneral({ ...general, defaultCountryCode: e.target.value.replace(/\D/g, '') })} /></Field>
+          </div>
+          <div className="mt-4">
+            <Toggle checked={Boolean(general.allowRegistration)} onChange={(v) => setGeneral({ ...general, allowRegistration: v })} label="Allow public sign-ups" description="Anyone can create a workspace account from the /signup page. New users are created as agents." />
           </div>
         </Section>
       )}
