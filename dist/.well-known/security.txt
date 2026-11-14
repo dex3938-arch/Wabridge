@@ -1,4 +1,4 @@
 Contact: mailto:dex3938@gmail.com
-Expires: 2027-11-14T09:47:44.105Z
+Expires: 2027-11-14T09:56:15.571Z
 Preferred-Languages: en, hi
 Canonical: https://wabridge-app.vercel.app/.well-known/security.txt

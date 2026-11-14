@@ -91,7 +91,7 @@ r.post('/', requireAdmin, async (req, res) => {
   const started = await engine.startSession(session.id);
   logActivity('session.created', `Number "${label || slug}" added`, { userId: req.user.id, meta: { sessionId: session.id } });
   void tick();
-  res.json({ session: started || session });
+  res.json({ session: { id: session.id, sessionId: session.id, ...session, ...(started || {}) } });
 });
 
 r.patch('/:id', requireAdmin, async (req, res) => {

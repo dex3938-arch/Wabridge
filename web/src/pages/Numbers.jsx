@@ -27,6 +27,7 @@ import { SESSION_STATUS, phonePretty, timeAgo, num } from '../lib/format.js';
 const WARMUP = [20, 40, 80, 160, 320, 640, 1000];
 
 function ConnectModal({ session, onClose }) {
+  const sid = session?.id || session?.sessionId;
   const [tab, setTab] = useState('qr');
   const [qr, setQr] = useState({ qrCode: session?.qrCode || null, status: session?.status || 'connecting' });
   const [phone, setPhone] = useState('');
@@ -42,11 +43,11 @@ function ConnectModal({ session, onClose }) {
   }, [session]);
 
   useEffect(() => {
-    if (!session) return;
+    if (!sid) return;
     let stop = false;
     const poll = async () => {
       try {
-        const out = await api.get(`/api/numbers/${session.id}/qr`);
+        const out = await api.get(`/api/numbers/${sid}/qr`);
         if (!stop && out) {
           setQr((prev) => ({
             status: out.status || prev.status,
@@ -64,10 +65,10 @@ function ConnectModal({ session, onClose }) {
       stop = true;
       clearInterval(t);
     };
-  }, [session, qr.qrCode]);
+  }, [sid, qr.qrCode]);
 
   useLive('session', (d) => {
-    if (d.sessionId === session?.id) {
+    if (d.sessionId === sid) {
       setQr((q) => ({
         ...q,
         status: d.status || q.status,
@@ -78,9 +79,10 @@ function ConnectModal({ session, onClose }) {
 
   const ready = qr.status === 'ready';
   const requestCode = async () => {
+    if (!sid) return;
     setBusy(true);
     try {
-      const out = await api.post(`/api/numbers/${session.id}/pairing-code`, { phone });
+      const out = await api.post(`/api/numbers/${sid}/pairing-code`, { phone });
       setCode(out.pairingCode || out.code);
     } catch (e) {
       toast(e.message, 'error');
@@ -347,7 +349,7 @@ export default function Numbers() {
       )}
       <p className="mt-6 text-xs text-slate-400">Last checked {timeAgo(new Date().toISOString())}. Status updates live.</p>
 
-      <AddModal open={adding} onClose={() => setAdding(false)} onCreated={(s, label) => { setAdding(false); setQrFor({ ...s, label }); reload(); }} />
+      <AddModal open={adding} onClose={() => setAdding(false)} onCreated={(s, label) => { const sid = s?.id || s?.sessionId; setAdding(false); setQrFor({ ...s, id: sid, sessionId: sid, label }); reload(); }} />
       <ConnectModal session={qrFor} onClose={() => { setQrFor(null); reload(); }} />
       <EditModal number={editing} onClose={() => setEditing(null)} onSaved={() => { setEditing(null); reload(); }} />
     </div>

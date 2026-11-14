@@ -40,7 +40,7 @@ export async function startSession(sessionId) {
   if (activeSessions.has(sessionId)) {
     const existing = activeSessions.get(sessionId);
     if (existing && (existing.status === 'ready' || existing.status === 'connecting' || existing.status === 'qr_pending')) {
-      return { sessionId, status: existing.status, qrCode: existing.qrCode };
+      return { id: sessionId, sessionId, status: existing.status, qrCode: existing.qrCode };
     }
   }
 
@@ -182,7 +182,7 @@ export async function startSession(sessionId) {
     }
   });
 
-  return { sessionId, status: sessionObj.status, qrCode: sessionObj.qrCode };
+  return { id: sessionId, sessionId, status: sessionObj.status, qrCode: sessionObj.qrCode };
 }
 
 function mapBaileysStatus(status) {
@@ -405,21 +405,21 @@ export async function stopSession(sessionId) {
     activeSessions.delete(sessionId);
     broadcast('session', { sessionId, event: 'connection.update', status: 'stopped' });
   }
-  return { sessionId, status: 'stopped' };
+  return { id: sessionId, sessionId, status: 'stopped' };
 }
 
 // Logout session
 export async function logoutSession(sessionId) {
   await cleanupSession(sessionId);
   broadcast('session', { sessionId, event: 'connection.update', status: 'logged_out' });
-  return { sessionId, status: 'logged_out' };
+  return { id: sessionId, sessionId, status: 'logged_out' };
 }
 
 // Delete session
 export async function deleteSession(sessionId) {
   await stopSession(sessionId);
   await cleanupSession(sessionId);
-  return { sessionId, status: 'deleted' };
+  return { id: sessionId, sessionId, status: 'deleted' };
 }
 
 // Get QR code data with smart wait for instant response
