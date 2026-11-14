@@ -72,7 +72,7 @@ function App() {
                 <Navigate to="/app" replace />
               ) : (
                 <AuthPage
-                  mode={state.setupRequired ? 'setup' : 'login'}
+                  mode="login"
                   setupRequired={state.setupRequired}
                   allowRegistration={state.allowRegistration}
                   onDone={setUser}

@@ -36,8 +36,9 @@ export default function AuthPage({ mode, setupRequired = false, allowRegistratio
       .then((s) => {
         if (cancelled) return;
         setAllowReg(Boolean(s.allowRegistration));
-        if (s.setupRequired) setActiveMode('setup');
-        else if (mode === 'setup') setActiveMode('register');
+        if (mode === 'setup') {
+          setActiveMode(s.setupRequired ? 'setup' : 'register');
+        }
       })
       .catch(() => {});
     return () => {
@@ -163,31 +164,53 @@ export default function AuthPage({ mode, setupRequired = false, allowRegistratio
               </Button>
               <div className="pt-2 text-center text-sm text-slate-500 dark:text-slate-400">
                 {isCreatingAccount ? (
-                  !setupRequired && (
-                    <p>
-                      Already have an account?{' '}
-                      <button
-                        type="button"
-                        onClick={() => navigate('/login')}
-                        className="font-semibold text-brand-600 hover:underline dark:text-brand-400"
-                      >
-                        Sign in
-                      </button>
-                    </p>
-                  )
-                ) : allowReg ? (
                   <p>
-                    New to WaBridge?{' '}
+                    Already have an account?{' '}
                     <button
                       type="button"
-                      onClick={() => navigate('/signup')}
-                      className="font-semibold text-brand-600 hover:underline dark:text-brand-400"
+                      onClick={() => {
+                        setActiveMode('login');
+                        navigate('/login');
+                      }}
+                      className="font-semibold text-brand-600 hover:underline dark:text-brand-400 cursor-pointer"
                     >
-                      Create an account
+                      Sign in
                     </button>
                   </p>
                 ) : (
-                  <p>Sign-ups are closed. Ask an admin to invite you in Team.</p>
+                  <p>
+                    {setupRequired ? (
+                      <>
+                        First user on this server?{' '}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setActiveMode('setup');
+                            navigate('/setup');
+                          }}
+                          className="font-semibold text-brand-600 hover:underline dark:text-brand-400 cursor-pointer"
+                        >
+                          Create workspace
+                        </button>
+                      </>
+                    ) : allowReg ? (
+                      <>
+                        New to WaBridge?{' '}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setActiveMode('register');
+                            navigate('/signup');
+                          }}
+                          className="font-semibold text-brand-600 hover:underline dark:text-brand-400 cursor-pointer"
+                        >
+                          Create an account
+                        </button>
+                      </>
+                    ) : (
+                      'Sign-ups are closed. Ask an admin to invite you in Team.'
+                    )}
+                  </p>
                 )}
               </div>
             </div>
