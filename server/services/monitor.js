@@ -26,6 +26,10 @@ export const hookUrl = () => `${config.publicUrl}/hooks/openwa`;
 
 export async function ensureWebhook(sessionId, force = false) {
   if (hooked.has(sessionId) && !force) return;
+  if (!process.env.USE_EXTERNAL_OPENWA) {
+    hooked.add(sessionId);
+    return;
+  }
   const url = hookUrl();
   const secret = engineWebhookSecret();
   const body = { url, events: ENGINE_EVENTS, secret, retryCount: 3 };

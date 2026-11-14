@@ -2,7 +2,7 @@
   "name": "wabridge",
   "version": "1.0.0",
   "private": true,
-  "description": "WaBridge \u2014 WhatsApp workspace (inbox, campaigns, automations, AI) on top of the OpenWA engine",
+  "description": "WaBridge \u2014 WhatsApp workspace (inbox, campaigns, automations, AI) on top of the embedded Baileys engine",
   "type": "module",
   "engines": {
     "node": ">=22.19"
@@ -15,7 +15,11 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.1.0",
-    "express": "^5.3.0"
+    "express": "^5.3.0",
+    "@whiskeysockets/baileys": "^6.7.12",
+    "qrcode": "^1.5.4",
+    "@hapi/boom": "^10.0.1",
+    "pino": "^9.6.0"
   },
   "devDependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",

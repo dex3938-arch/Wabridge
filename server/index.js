@@ -89,7 +89,14 @@ app.use((err, req, res, _next) => {
 if (process.env.VERCEL !== '1') {
   app.listen(config.port, config.host, () => {
     console.log(`WaBridge running on http://localhost:${config.port}`);
-    console.log(`  engine: ${config.openwaUrl}  (key ${config.openwaKey ? 'set' : 'MISSING'})`);
+    if (process.env.USE_EXTERNAL_OPENWA === 'true' || process.env.USE_EXTERNAL_OPENWA === '1') {
+      console.log(`  engine: external OpenWA at ${config.openwaUrl} (key ${config.openwaKey ? 'set' : 'MISSING'})`);
+    } else {
+      console.log(`  engine: embedded Baileys (pure-JS in-process WhatsApp Web engine)`);
+      import('./services/baileys.js')
+        .then((m) => m.initializeSessions?.())
+        .catch((e) => console.warn('Failed to auto-initialize Baileys sessions:', e.message));
+    }
     console.log(`  engine → WaBridge events: ${config.publicUrl}/hooks/openwa`);
     logActivity('system.start', 'WaBridge started');
     startMonitor();
