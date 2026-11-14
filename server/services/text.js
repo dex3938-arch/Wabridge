@@ -14,7 +14,16 @@ export function normalizePhone(input, countryCode) {
   return digits;
 }
 
-export const toChatId = (phone) => (String(phone).includes('@') ? String(phone) : `${phone}@c.us`);
+export const cleanChatId = (chatId) => {
+  const s = String(chatId || '').trim();
+  if (!s) return '';
+  if (s.endsWith('@g.us')) return s;
+  if (s.endsWith('@c.us')) return s.replace('@c.us', '@s.whatsapp.net');
+  if (!s.includes('@')) return `${s}@s.whatsapp.net`;
+  return s;
+};
+
+export const toChatId = (phone) => cleanChatId(phone);
 
 export function phoneFromChatId(chatId) {
   const s = String(chatId || '');

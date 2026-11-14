@@ -112,6 +112,7 @@ r.post('/:id/messages', async (req, res) => {
   const { text, media, quotedMessageId } = req.body || {};
   if (!text?.trim() && !media) throw bad('Message is empty.');
   const out = await sendMessage({
+    conv,
     sessionId: conv.session_id,
     chatId: conv.chat_id,
     text: text?.trim(),

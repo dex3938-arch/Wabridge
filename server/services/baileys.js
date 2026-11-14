@@ -8,7 +8,7 @@ import { emitOutbound } from './outbound.js';
 import { upsertConversation, upsertContact, recordMessage, setMessageStatusByWaId } from './messaging.js';
 import { handleInbound } from './automation.js';
 import { saveBase64 } from './media.js';
-import { phoneFromChatId, isGroupChat, toChatId } from './text.js';
+import { phoneFromChatId, isGroupChat, toChatId, cleanChatId } from './text.js';
 import {
   makeWASocket,
   useMultiFileAuthState,
@@ -208,7 +208,7 @@ async function processInboundMessage(sock, sessionId, msg) {
   if (remoteJid.endsWith('@broadcast') || remoteJid.endsWith('@newsletter')) return;
 
   const fromMe = Boolean(msg.key.fromMe);
-  const chatId = remoteJid;
+  const chatId = cleanChatId(remoteJid);
   const isGroup = isGroupChat(chatId) || chatId.endsWith('@g.us');
   const senderJid = msg.key.participant || (fromMe ? sock?.user?.id : remoteJid) || remoteJid;
   const senderPhone = senderJid ? senderJid.split(':')[0].split('@')[0] : null;

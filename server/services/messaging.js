@@ -3,7 +3,7 @@ import { engine, EngineError } from './openwa.js';
 import { broadcast } from './events.js';
 import { emitOutbound } from './outbound.js';
 import { META_SESSION, metaSendText, metaSendMedia } from './meta.js';
-import { phoneFromChatId, isGroupChat, toChatId, preview } from './text.js';
+import { phoneFromChatId, isGroupChat, toChatId, cleanChatId, preview } from './text.js';
 import { saveBase64 } from './media.js';
 
 // ---------- conversations & contacts ----------
@@ -19,22 +19,23 @@ export function upsertContact(phone, name, source = 'whatsapp') {
 }
 
 export function upsertConversation({ channel = 'openwa', sessionId, chatId, name, phone: phoneHint }) {
-  const phone = phoneHint || phoneFromChatId(chatId);
-  const group = isGroupChat(chatId) ? 1 : 0;
+  const normChatId = cleanChatId(chatId);
+  const phone = phoneHint || phoneFromChatId(normChatId);
+  const group = isGroupChat(normChatId) ? 1 : 0;
   run(
     `INSERT INTO conversations(channel, session_id, chat_id, phone, name, is_group)
      VALUES(?, ?, ?, ?, ?, ?)
      ON CONFLICT(session_id, chat_id) DO UPDATE SET
-       name = COALESCE(excluded.name, conversations.name),
+       name = COALESCE(conversations.name, excluded.name),
        phone = COALESCE(conversations.phone, excluded.phone)`,
     channel,
     sessionId,
-    chatId,
+    normChatId,
     phone,
     name || null,
     group,
   );
-  return get('SELECT * FROM conversations WHERE session_id = ? AND chat_id = ?', sessionId, chatId);
+  return get('SELECT * FROM conversations WHERE session_id = ? AND chat_id = ?', sessionId, normChatId);
 }
 
 export function conversationView(id) {
@@ -136,11 +137,14 @@ function sentTodayFor(sessionId) {
  * Send one message through the right channel and keep the inbox in sync.
  * media: { kind: image|video|audio|document, url?, base64?, mimetype?, filename? }
  */
-export async function sendMessage({ sessionId, chatId, phone, text, media, author = 'agent', quotedMessageId, name }) {
+export async function sendMessage({ sessionId, chatId, phone, text, media, author = 'agent', quotedMessageId, name, conv: existingConv }) {
   if (!sessionId) throw Object.assign(new Error('Choose a WhatsApp number to send from.'), { status: 400 });
-  const target = chatId || toChatId(phone);
+  const target = cleanChatId(chatId || toChatId(phone));
   const channel = sessionId === META_SESSION ? 'meta' : 'openwa';
-  const conv = upsertConversation({ channel, sessionId, chatId: target, name });
+  const conv = existingConv || upsertConversation({ channel, sessionId, chatId: target, name });
+  if (!conv || !conv.id) {
+    throw Object.assign(new Error('Conversation not found.'), { status: 404 });
+  }
 
   if (channel === 'openwa') {
     const number = get('SELECT daily_limit FROM numbers WHERE session_id = ?', sessionId);
