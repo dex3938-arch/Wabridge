@@ -28,11 +28,18 @@ const WARMUP = [20, 40, 80, 160, 320, 640, 1000];
 
 function ConnectModal({ session, onClose }) {
   const [tab, setTab] = useState('qr');
-  const [qr, setQr] = useState({ qrCode: null, status: session?.status });
+  const [qr, setQr] = useState({ qrCode: session?.qrCode || null, status: session?.status || 'connecting' });
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState(null);
   const [busy, setBusy] = useState(false);
   const toast = useToast();
+
+  useEffect(() => {
+    if (session) {
+      setQr({ qrCode: session.qrCode || null, status: session.status || 'connecting' });
+      setCode(null);
+    }
+  }, [session]);
 
   useEffect(() => {
     if (!session) return;
@@ -40,21 +47,33 @@ function ConnectModal({ session, onClose }) {
     const poll = async () => {
       try {
         const out = await api.get(`/api/numbers/${session.id}/qr`);
-        if (!stop) setQr(out);
+        if (!stop && out) {
+          setQr((prev) => ({
+            status: out.status || prev.status,
+            qrCode: out.qrCode !== undefined ? out.qrCode : prev.qrCode,
+          }));
+        }
       } catch {
         /* keep polling */
       }
     };
     poll();
-    const t = setInterval(poll, 3000);
+    const interval = qr.qrCode ? 2500 : 1000;
+    const t = setInterval(poll, interval);
     return () => {
       stop = true;
       clearInterval(t);
     };
-  }, [session]);
+  }, [session, qr.qrCode]);
 
   useLive('session', (d) => {
-    if (d.sessionId === session?.id && d.status) setQr((q) => ({ ...q, status: d.status }));
+    if (d.sessionId === session?.id) {
+      setQr((q) => ({
+        ...q,
+        status: d.status || q.status,
+        qrCode: d.qrCode !== undefined ? d.qrCode : q.qrCode,
+      }));
+    }
   });
 
   const ready = qr.status === 'ready';
@@ -62,7 +81,7 @@ function ConnectModal({ session, onClose }) {
     setBusy(true);
     try {
       const out = await api.post(`/api/numbers/${session.id}/pairing-code`, { phone });
-      setCode(out.pairingCode);
+      setCode(out.pairingCode || out.code);
     } catch (e) {
       toast(e.message, 'error');
     } finally {

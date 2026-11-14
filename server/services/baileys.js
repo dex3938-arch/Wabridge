@@ -53,6 +53,8 @@ export async function startSession(sessionId) {
     printQRInTerminal: false,
     syncFullHistory: false,
     markOnlineOnConnect: false,
+    browser: ['WaBridge', 'Chrome', '1.0.0'],
+    connectTimeoutMs: 30000,
   });
 
   const sessionObj = {
@@ -420,8 +422,8 @@ export async function deleteSession(sessionId) {
   return { sessionId, status: 'deleted' };
 }
 
-// Get QR code data
-export async function getQr(sessionId) {
+// Get QR code data with smart wait for instant response
+export async function getQr(sessionId, maxWaitMs = 5000) {
   let session = activeSessions.get(sessionId);
   if (!session) {
     const row = get('SELECT * FROM numbers WHERE session_id = ?', sessionId);
@@ -431,6 +433,15 @@ export async function getQr(sessionId) {
     }
   }
   if (!session) return { qrCode: null, status: 'unknown' };
+
+  // If QR code is not ready yet and socket is connecting, wait up to maxWaitMs for it to generate
+  if (!session.qrCode && (session.status === 'connecting' || session.status === 'qr_pending')) {
+    const start = Date.now();
+    while (Date.now() - start < maxWaitMs) {
+      if (session.qrCode || session.status === 'ready' || session.status === 'disconnected') break;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+  }
 
   return {
     qrCode: session.qrCode,
@@ -446,7 +457,7 @@ export async function pairingCode(sessionId, phoneNumber) {
   const clean = String(phoneNumber).replace(/[^0-9]/g, '');
   try {
     const code = await session.sock.requestPairingCode(clean);
-    return { code };
+    return { code, pairingCode: code };
   } catch (error) {
     console.error(`Error requesting pairing code for session ${sessionId}:`, error);
     throw error;
